@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-exemplo",
-    "slug": "app-exemplo",
+    "name": "coffee-shop",
+    "slug": "coffee-shop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    }, 
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow WeFood to use your location."
+        }
+      ]
+    ]
   }
 }
