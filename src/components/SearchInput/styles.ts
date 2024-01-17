@@ -23,7 +23,6 @@ export const styles = StyleSheet.create({
       },
       icon: {
         backgroundColor: '#B77364',
-        position: "relative",
         width: 40,
         height: 40,
         borderRadius: 100,

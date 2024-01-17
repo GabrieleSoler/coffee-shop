@@ -1,16 +1,17 @@
 import { Text, View } from "react-native";
 import { styles } from "./styles";
 import CardTitle from "./Title/Index";
-import { PRODUCTS } from "../../data/products";
 
-export default function FoodCard() {
+type FoodCardProps = {
+  title: string;
+  price: number | null;
+  size: string | null;
+};
+
+export default function FoodCard({ title, price, size }: FoodCardProps) {
   return (
-    <View>
-      {PRODUCTS.map((item, index) => (
-        <View style={styles.container}>
-        <CardTitle title={item.name}/>
-        </View>
-      ))}
+    <View style={styles.cardContainer}>
+      <CardTitle title={title} />
     </View>
-  )
+  );
 }
