@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, Pressable, Text, View } from "react-native";
 import { styles } from "./styles";
 import CategoriesInput from "../CategoriesInput";
+import { FilterContext } from "../../Contexts/filter";
 
 const CATEGORIES_TYPE = [
   {
@@ -19,10 +20,10 @@ const CATEGORIES_TYPE = [
 ];
 
 export default function CategoriesFilter() {
-  const [filterSelected, setSelected] = useState<number | null>(null);
+  const { getFilter, filter } = useContext(FilterContext);
 
   function handleSelectFilter(id: number) {
-    setSelected(id);
+    getFilter(id)
   }
 
   return (
@@ -32,7 +33,7 @@ export default function CategoriesFilter() {
           <CategoriesInput
             Title={item.title}
             onPress={() => handleSelectFilter(item.id)}
-            FilterSelected={filterSelected}
+            FilterSelected={filter}
             Id={item.id}
           />
         </View>

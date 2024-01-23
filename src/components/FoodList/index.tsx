@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import FoodCard from "../FoodCard";
 
@@ -6,8 +6,10 @@ import { PRODUCTS } from "../../data/products";
 import { styles } from "./styles";
 import CategoriesFilter from "../CategoriesFilter";
 import CategoryList from "../CategoryList";
+import { FilterContext } from "../../Contexts/filter";
 
 export default function FoodList() {
+  const { filter } = useContext(FilterContext);
 
   function groupByCategory(products: typeof PRODUCTS) {
     return products.reduce((acc, current) => {
@@ -17,7 +19,8 @@ export default function FoodList() {
     }, {} as { [key: number]: typeof PRODUCTS });
   }
 
-  function filterProducts(groupedProducts: ReturnType<typeof groupByCategory>, allowedCategories: Array<number>) {
+  function filterProducts(groupedProducts: ReturnType<typeof groupByCategory>, allowedCategories: Array<number | null>) {
+    // debugger
     if (allowedCategories.length == 0) return groupedProducts;
 
     return Object.keys(groupedProducts)
@@ -30,7 +33,9 @@ export default function FoodList() {
 
   const groupedProducts = groupByCategory(PRODUCTS);
 
-  console.log(groupedProducts[2])
+  const filteredProduct = filterProducts(groupedProducts, [filter])
+
+  console.log(groupedProducts)
 
   return (
     <View>
@@ -38,9 +43,9 @@ export default function FoodList() {
         <Text style={styles.title}>Categories</Text>
         <CategoriesFilter />
       </View>
-      <ScrollView horizontal>
+      <View>
         <View style={styles.container}>
-          {Object.keys(groupedProducts).map((item, index) => (
+          {Object.keys(filteredProduct).map((item, index) => (
             <View key={index}>
               <CategoryList categoryText={item}>
                 {groupedProducts[Number(item)].map((item, index) => {
@@ -55,7 +60,7 @@ export default function FoodList() {
             </View>
           ))}
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 }

@@ -7,13 +7,15 @@ import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import { Baloo2_700Bold } from "@expo-google-fonts/baloo-2";
 import FoodList from './src/components/FoodList';
 import Home from './src/Screens/Home';
+import { AuthProvider } from './src/Contexts/filter';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Home/>
-      
+      <AuthProvider>
+        <Home/>
+      </AuthProvider>
     </View>
   );
 }
