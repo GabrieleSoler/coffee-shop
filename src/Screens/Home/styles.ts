@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        gap: 30
+        gap: 30,
+        paddingTop: 20
     }
 })

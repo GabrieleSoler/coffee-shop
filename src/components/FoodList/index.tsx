@@ -21,7 +21,8 @@ export default function FoodList() {
 
   function filterProducts(groupedProducts: ReturnType<typeof groupByCategory>, allowedCategories: Array<number | null>) {
     // debugger
-    if (allowedCategories.length == 0) return groupedProducts;
+    console.log(allowedCategories)
+    if (allowedCategories.includes(1)) return groupedProducts;
 
     return Object.keys(groupedProducts)
       .filter((category) => allowedCategories.includes(Number(category)))
@@ -35,7 +36,7 @@ export default function FoodList() {
 
   const filteredProduct = filterProducts(groupedProducts, [filter])
 
-  console.log(groupedProducts)
+  console.log(filteredProduct)
 
   return (
     <View>
